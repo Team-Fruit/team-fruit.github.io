@@ -7,6 +7,7 @@ var plumber = require('gulp-plumber');
 var cp = require('child_process');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync');
+var deploy      = require('gulp-gh-pages');
 
 var jekyllCommand = (/^win/.test(process.platform)) ? 'jekyll.bat' : 'jekyll';
 
@@ -70,10 +71,18 @@ gulp.task('js', function(){
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/styles/**/*.scss', ['sass']);
-  gulp.watch('src/js/**/*.js', ['js']);
+	gulp.watch('src/styles/**/*.scss', ['sass']);
+	gulp.watch('src/js/**/*.js', ['js']);
 	gulp.watch('src/img/**/*.{jpg,png,gif}', ['imagemin']);
-  gulp.watch(['*html', '_includes/*html', '_layouts/*.html'], ['jekyll-rebuild']);
+	gulp.watch(['*html', '_includes/*html', '_layouts/*.html'], ['jekyll-rebuild']);
+});
+
+/**
+ * Push build to gh-pages
+ */
+gulp.task('deploy', function () {
+	return gulp.src("./dist/**/*")
+		.pipe(deploy())
 });
 
 gulp.task('default', ['js', 'sass', 'browser-sync', 'watch']);
