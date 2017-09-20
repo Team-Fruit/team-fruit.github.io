@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id="bodymovin"></div>
+
+        <script src="bodymovin.js"></script>
+        
+        <script>
+        var animData = {
+            wrapper: document.getElementById('bodymovin'),
+            animType: 'svg',
+            loop: true,
+            prerender: true,
+            autoplay: true,
+            path: 'data.json'
+        };
+        var anim = bodymovin.loadAnimation(animData);
+        </script>
+    </body>
+</html>

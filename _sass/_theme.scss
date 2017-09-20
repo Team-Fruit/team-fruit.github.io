@@ -55,30 +55,70 @@ body {
 }
 
 .header {
-  background: $main;
   display: block;
-  vertical-align: bottom;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   .particles-js-canvas-el {
-    width:100vw !important;
+    width:100% !important;
     height:100vh !important;
   }
 }
 
+.bxslider_wrap {
+  ul li img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
+
+.bx-wrapper {
+  border: none;
+  .bx-controls.bx-has-pager {
+    z-index: 200;
+    position: absolute;
+    bottom: 23px;
+    width: 100%;
+    left: 0;
+    .bx-pager {
+      position: static;
+      &.bx-default-pager a {
+        background: #ffffff;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        &.active {
+          background: #feee71;
+        }
+        &:hover {
+          background: #e9d641;
+        }
+      }  
+    }
+  }
+}
+
 .content {
-  z-index: 1;
+  padding-top: 40px;
+  background-color: #fff;
+  position: relative;
+}
+
+.header-content {
+  z-index: 200;
   text-align: center;
   color:#FFF;
   position: absolute;
   top: 50%;
-  left: 50%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  padding: 20px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
   .site-title {
     font-size: 50px;
     display: block;
@@ -142,6 +182,7 @@ body {
 }
 
 .down {
+  z-index: 200;
   color: #FFF;
   position: absolute;
   bottom: 25px;
@@ -156,7 +197,7 @@ body {
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
       top: 50%;
-      left: 50%;
+      right: 0;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       width: 100px;
@@ -251,9 +292,10 @@ body {
 }
 
 .footer {
-  background: $main;
   padding: 10px 0;
-  margin-top: 100px;
+  margin-top: 0;
+  background-color: #000;
+  position: relative;
   text-align: center;
   color: #FFF;
   .love {

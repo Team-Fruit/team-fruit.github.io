@@ -13,8 +13,22 @@ twitter_username: lorem_ipsum
 github_username:  lorem_ipsum
 gplus_username:  lorem_ipsum
 
+sass:
+  style: compressed
+
 # Google-analytics
 google-analytics:
   id: ""
 
-exclude: ['package.json', 'src' , 'node_modules']
+exclude:
+  - package.json
+  - node_modules
+  - vendor/bundle
+  - node_modules
+  - .git
+  - .bundle
+  - .saas-cache
+  - .bowerrc
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
