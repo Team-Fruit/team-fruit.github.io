@@ -1,0 +1,52 @@
+.header {
+display: block;
+width: 100%;
+min-height: 100vh;
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+    .particles-js-canvas-el {
+        width:100% !important;
+        height:100vh !important;
+    }
+}
+
+.bxslider_wrap {
+    ul li img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+    }
+}
+
+.bx-wrapper {
+    border: none;
+    .bx-controls.bx-has-pager {
+        z-index: 200;
+        position: absolute;
+        bottom: 23px;
+        width: 100%;
+        left: 0;
+        .bx-pager {
+            position: static;
+            &.bx-default-pager a {
+                background: #ffffff;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                &.active {
+                    background: #feee71;
+                }
+                &:hover {
+                    background: #e9d641;
+                }
+            }  
+        }
+    }
+}
+
+.content {
+    padding-top: 40px;
+    background-color: #fff;
+    position: relative;
+}
