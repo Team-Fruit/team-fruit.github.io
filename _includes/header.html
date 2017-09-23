@@ -2,15 +2,40 @@
   <div class="wide_header">
     <div class="wide_slide">
       <div class="wide_wrap">
-        <div>
-          <img src="{{ "/img/wide/layer_1.png" | prepend: site.baseurl }}">
+        <div class="wide_layer">
+          <div id="wide_layer_1" class="wide_sheet">
+            <img src="{{ "/img/wide/layer_1.png" | prepend: site.baseurl }}">
+          </div>
         </div>
-        <div class="wide_movin">
-          <img src="{{ "/img/wide/layer_2.png" | prepend: site.baseurl }}">
+        <div class="wide_layer">
+          <div id="wide_layer_2" class="wide_sheet">
+            <img src="{{ "/img/wide/layer_2.png" | prepend: site.baseurl }}">
+          </div>
         </div>
-        <div>
-          <img src="{{ "/img/wide/layer_3.png" | prepend: site.baseurl }}">        
+        <div class="wide_layer">
+          <div id="wide_layer_3" class="wide_sheet">
+
+          </div>
         </div>
+        <div class="wide_layer">
+          <div id="wide_layer_4" class="wide_sheet">
+            <img src="{{ "/img/wide/layer_3.png" | prepend: site.baseurl }}">        
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="control-bubble" class="js-bubble__target">
+      <a href="#" data-bubble-label>
+        <dl>
+          <dt></dt>
+          <dd></dd>
+        </dl>
+        <div id="bubble-dest"></div>
+      </a>
+    </div>
+    <div class="wide-ctrl">
+      <div id="wide_ctrl_slider" class="wide-ctrl-slider">
+        <div id="wide_ctrl_handle" class="ui-slider-handle"></div>
       </div>
     </div>
   </div>
