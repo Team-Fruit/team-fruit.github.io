@@ -10,8 +10,8 @@ def main():
     }
     url = 'https://api.cloudflare.com/client/v4/zones/' + args[1] + '/purge_cache'
     res = requests.delete(url, headers=headers, json={"purge_everything": "true"}).json()
-    if res['success']:
-        sys.exit(0)
+    sys.exit(0 if res['success'] else 1)
+
 
 if __name__ == '__main__':
     main()
