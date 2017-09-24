@@ -104,7 +104,15 @@ $(document).ready(function() {
     (function() {
         var i = null;
         var header = $(".wide-header");
+        var ctrl = $(".wide-ctrl");
         header.on({
+            'touchstart': function(e) {
+                e.preventDefault();
+                header.toggleClass('wide-shown');
+                ctrl.on('touchstart touchmove touchend', function(e) {
+                    e.preventDefault();
+                });
+            },
             'mousemove': function() {
                 clearTimeout(i);
                 header.addClass('wide-shown');
@@ -124,7 +132,7 @@ $(document).ready(function() {
 
     (function() {
         var animData = {
-            wrapper: document.getElementById('wide_layer_3'),
+            wrapper: $('#wide_layer_3')[0],
             animType: 'svg',
             loop: true,
             prerender: true,
