@@ -9,7 +9,8 @@ def main():
         'X-Auth-Key': args[3]
     }
     url = 'https://api.cloudflare.com/client/v4/zones/' + args[1] + '/purge_cache'
-    res = requests.delete(url, headers=headers, json={"purge_everything": "true"}).json()
+    res = requests.delete(url, headers=headers, json={"purge_everything": True}).json()
+    print('success: {}'.format(res['success']))
     sys.exit(0 if res['success'] else 1)
 
 
