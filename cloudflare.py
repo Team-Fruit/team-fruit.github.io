@@ -4,6 +4,8 @@ import requests
 
 def main():
     args = sys.argv
+    for line in args:
+        print(line)
     headers = {
         'Content-Type': 'application/json',
         'X-Auth-Email': args[2],
