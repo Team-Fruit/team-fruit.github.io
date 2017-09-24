@@ -9,8 +9,9 @@ def main():
         'X-Auth-Key': args[3]
     }
     url = 'https://api.cloudflare.com/client/v4/zones/' + args[1] + '/settings/development_mode'
-    print(requests.patch(url, headers=headers, json={"value": "on"}).json())
-    sys.exit(0)
+    res = requests.patch(url, headers=headers, json={"value": "on"}).json()
+    if res['success']:
+        sys.exit(0)
 
 if __name__ == '__main__':
     main()
