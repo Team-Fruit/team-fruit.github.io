@@ -1,6 +1,8 @@
 ---
 ---
+;
 
+var debug_tween;
 $(document).ready(function() {
     (function() {
         var args = arguments;
@@ -48,12 +50,12 @@ $(document).ready(function() {
     }(
         { target: $('#wide_layer_1'), scale: -1 },
         { target: $('#wide_layer_2'), scale: 1 },
-        { target: $('#wide_layer_3'), scale: 5 },
+        { target: $('#wide_layer_3'), scale: 3 },
         { target: $('#wide_layer_4'), scale: 5 }
     ));
 
     (function() {
-        var b = new TimelineMax({
+        var b = debug_tween = new TimelineMax({
             repeat: 300,
             onUpdate: function() {
                 $('#wide_ctrl_slider').slider("value", b.progress());
@@ -86,26 +88,40 @@ $(document).ready(function() {
             return e
         }($(".wide-wrap"))]);
 
+        var dragging = false;
         $('#wide_ctrl_slider').slider({
             range: !1,
             min: 0,
             max: 1,
             step: .001,
             slide: function(e, t) {
-                b.pause(),
-                b.progress(t.value),
-                $("html, #wide_slider, .ui-slider-handle").one("mouseup", function(e) {
-                    b.resume()
+                b.pause();
+                b.progress(t.value);
+                dragging = true;
+                $("html, #wide_slider, .ui-slider-handle").one("mouseup touchend", function(e) {
+                    b.resume();
+                    dragging = false;
                 });
             }
         });
-    }());
 
-    (function() {
         var i = null;
         var header = $(".wide-header");
         var ctrl = $(".wide-ctrl");
         var touched = false;
+        var pressed = false;
+        var inside = false;
+        $(document).on({
+            'mouseup': function() {
+                if (touched)
+                    return true;
+                pressed = false;
+                if (!pressed) {
+                    header.removeClass('wide-shown');
+                    header.css('cursor', 'none');
+                }
+            }
+        });
         header.on({
             'touchstart': function(e) {
                 touched = true;
@@ -115,20 +131,31 @@ $(document).ready(function() {
                     return false;
                 });
             },
+            'mousedown': function() {
+                if (touched)
+                    return true;
+                pressed = true;
+            },
             'mousemove': function() {
                 if (touched)
-                    return;
+                    return true;
+                inside = true;
                 clearTimeout(i);
                 header.addClass('wide-shown');
                 header.css('cursor', 'auto');
                 i = setTimeout(function () {
-                    header.removeClass('wide-shown');
-                    header.css('cursor', 'none');
+                    if (!pressed) {
+                        header.removeClass('wide-shown');
+                        header.css('cursor', 'none');
+                    }
                 }, 1000);
             },
             'mouseleave': function() {
                 if (touched)
-                    return;
+                    return true;
+                inside = false;
+                if (pressed)
+                    return true;
                 clearTimeout(i);
                 header.removeClass('wide-shown');
                 header.css('cursor', 'none');
