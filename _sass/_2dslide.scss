@@ -1,20 +1,26 @@
-.wide_header {
+.wide-header {
     position: relative;
-    .wide_slide {
+    .wide-slide {
         width: 100%;
         max-height: 500px;
         height: 80vh;
         overflow: hidden;
-        .wide_wrap {
+        .wide-wrap {
             position: relative;
             height: 100%;
-            .wide_layer {
+            .wide-layer {
                 &:nth-child(1) {
                     opacity: 0.5;
                 } 
                 &:nth-child(2) {
                     opacity: 0.9;
                 } 
+                &:nth-child(3) {
+                    opacity: 1;
+                    width: 2441px;
+                    height: 653px;
+                    padding: 0;
+                }
                 &:nth-child(4) {
                     opacity: 1;
                 }
@@ -22,7 +28,7 @@
                 opacity: 0.3;
                 position: absolute;
             }
-            .wide_sheet {
+            .wide-sheet {
                 transition: all 0.1s linear;
                 position: relative;
                 top: -5px;
@@ -36,6 +42,7 @@
         }
     }
     .wide-ctrl {
+        z-index: 100;
         position: absolute;
         width: 100%;
         bottom: 0;
@@ -43,7 +50,7 @@
         .wide-ctrl-slider {
             position: relative;
             background: none;
-            background-color: #777;
+            background-color: rgba(255, 255, 255, 0.5);
             border: none;
             height: 1px;
             margin-top: 10px;
@@ -55,7 +62,7 @@
                 width: 11px;
                 height: 21px;
 
-                &:after {
+                &::after {
                     content: " ";
                     position: absolute;
                     left: 5px;
@@ -64,14 +71,26 @@
                     height: 0;
                     border-style: solid;
                     border-width: 0 5.5px 29px 5.5px;
-                    border-color: transparent transparent #777 transparent;    
+                    border-color: transparent transparent #fff transparent;    
                 }
             }
         }
     }
-    .js-bubble__target {
+    .wide-gradient {
+        z-index: 99;
         position: absolute;
-        bottom: 0;
         width: 100%;
+        height: 98px;
+        bottom: 0;
+        background-repeat: repeat-x;
+        background-position: bottom;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);    
     }
+}
+.wide-autohide {
+    opacity: 0;
+    transition: opacity .1s cubic-bezier(0.4,0.0,1,1);
+}
+.wide-shown .wide-autohide {
+    opacity: 1;
 }
