@@ -8,9 +8,8 @@ def main():
         'X-Auth-Email': args[2],
         'X-Auth-Key': args[3]
     }
-    url = 'https://api.cloudflare.com/client/v4/zones/' + args[1] + '/settings/development_mode'
-    res = requests.patch(url, headers=headers, json={"value": "on"}).json()
-    print(res)
+    url = 'https://api.cloudflare.com/client/v4/zones/' + args[1] + '/purge_cache'
+    res = requests.delete(url, headers=headers, json={"purge_everything": "true"}).json()
     if res['success']:
         sys.exit(0)
 
