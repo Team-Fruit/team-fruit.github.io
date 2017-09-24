@@ -105,15 +105,19 @@ $(document).ready(function() {
         var i = null;
         var header = $(".wide-header");
         var ctrl = $(".wide-ctrl");
+        var touched = false;
         header.on({
             'touchstart': function(e) {
-                e.preventDefault();
+                touched = true;
                 header.toggleClass('wide-shown');
                 ctrl.on('touchstart touchmove touchend', function(e) {
                     e.preventDefault();
+                    return false;
                 });
             },
             'mousemove': function() {
+                if (touched)
+                    return;
                 clearTimeout(i);
                 header.addClass('wide-shown');
                 header.css('cursor', 'auto');
@@ -123,6 +127,8 @@ $(document).ready(function() {
                 }, 1000);
             },
             'mouseleave': function() {
+                if (touched)
+                    return;
                 clearTimeout(i);
                 header.removeClass('wide-shown');
                 header.css('cursor', 'none');
