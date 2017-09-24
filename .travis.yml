@@ -3,4 +3,4 @@ python: 3.5
 cache: pip
 install:
 - pip install -r requirements.txt
-- python cloudflare.py ${GIT_TAG}
+- python cloudflare.py ${CLOUT_FLARE}
