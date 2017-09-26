@@ -1,0 +1,86 @@
+.loader {
+    z-index: 400;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transition: all 1s linear;
+    opacity: 1;
+    body.loaded & {
+        opacity: 0;
+    }
+}
+
+.js {
+    body {
+        overflow: hidden;
+        .view {
+            transition: all 1s linear;
+            filter: blur(5px);
+        }
+        &.loaded .view {
+            filter: blur(0);
+        }
+        &.loaded {
+            overflow: auto;
+        }
+    }
+}
+
+.no-js {
+    .loader {
+        display: none;
+    }
+}
+
+$ellipse:80px;
+
+$circle:$ellipse/10;
+@mixin style($mod) {
+    width: $mod * 2;
+    height: $mod * 2;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+}
+
+.ellipse {
+    body.loaded & {
+        opacity: 0;
+    }
+    @include style($ellipse);
+    transform-style: preserve-3d;
+    //border: #000 solid 1px;
+    .circle {
+        @include style($circle);
+        animation: move linear infinite;
+        animation-duration: 1.7s;
+    }
+    &:nth-child(1) .circle {
+        background-color: #f8ac21;
+    }
+    &:nth-child(2) .circle {
+        background-color: #fa6c1e;
+    }
+    &:nth-child(3) .circle {
+        background-color: #717171;
+    }
+    @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+            transform: rotateZ($i*2*60deg) rotateY(100deg);
+        }
+    }
+}
+
+@keyframes move {
+    from {
+        transform: rotateZ(0) translateX($ellipse) rotateZ(0) rotateY(-90deg)/* rotateZ(0deg)*/;
+    }
+    to {
+        transform: rotateZ(360deg) translateX($ellipse) rotateZ(-360deg) rotateY(-90deg)/* rotateZ(-360deg)*/;
+    }
+}

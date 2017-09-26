@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="no-js">
   {% include head.html %}
   <body>
+    {% include view-before.html %}
+    <div class="view">
       {% include header.html %}
       <div class="content">
         <section id="about">
@@ -13,4 +15,6 @@
           {{ content }}
       </div>
       {% include footer.html %}
+    </div>
+    {% include view-after.html %}      
   </body>
