@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script>
+            byohenkan = (function() {
+                function henkan(name) {
+                    var namechars = name.split('');
+
+                    var result = "";
+
+                    for (; ;)
+                        if (namechars.length >= 5 || namechars.length == 3)
+                            result += henkan3(namechars.shift(), namechars.shift(), namechars.shift());
+                        else if (namechars.length == 4 || namechars.length == 2)
+                            result += henkan2(namechars.shift(), namechars.shift());
+                        else if (namechars.length == 1)
+                            result += henkan1(namechars.shift());
+                        else
+                            return result;
+                }
+                
+                function henkan1(char1) {
+                    return `${char1}ゾボョン`;
+                }
+
+                function henkan2(char1, char2) {
+                    return `${char1}ゾボョ${char2}`;
+                }
+
+                function henkan3(char1, char2, char3) {
+                    return `${char1}ゾ${char2}ョ${char3}`;
+                }
+
+                return function() {
+                    var element = document.getElementById("byofield");
+                    element.value = henkan(element.value);
+                }
+            })();
+        </script>
+    </head>
+    <body>
+        <input id="byofield" type="text"><input id="byobutton" type="button" value="変換" onClick="byohenkan()">
+    </body>
+</html>
