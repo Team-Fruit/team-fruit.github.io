@@ -30,9 +30,20 @@
                     return `${char1}ゾ${char2}ョ${char3}`;
                 }
 
+                function hiraganaToKatagana(src) {
+                    return src.replace(/[\u3041-\u3096]/g, function (match) {
+                        var chr = match.charCodeAt(0) + 0x60;
+                        return String.fromCharCode(chr);
+                    });
+                }
+
+                function run(name) {
+                    return henkan(hiraganaToKatagana(name));
+                }
+
                 return function() {
                     var element = document.getElementById("byofield");
-                    element.value = henkan(element.value);
+                    element.value = run(element.value);
                 }
             })();
         </script>
