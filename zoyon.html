@@ -46,9 +46,61 @@
                     element.value = run(element.value);
                 }
             })();
+
+            byounhenkan = (function () {
+                function henkan(name) {
+                    if (name.length%5!=0)
+                        return name;
+
+                    var nameunitnum1 = Math.max(0, name.length - 10);
+                    var nameunitnum2 = Math.max(nameunitnum1, name.length - 5);
+                    var name1 = name.substring(0, nameunitnum1);
+                    var name2 = name.substring(nameunitnum1, nameunitnum2);
+                    var name3 = name.substring(nameunitnum2, name.length);
+
+                    if (unhenkanlast2_check(name2, name3))
+                        return (name1 ? unhenkan3(name1) : "") + unhenkan2(name2) + unhenkan2(name3);
+                    else
+                        return (name1 ? unhenkan3(name1) : "") + (name2 ? unhenkan3(name2) : "") + unhenkanlast1(name3);
+                }
+
+                function unhenkanlast1(src) {
+                    if (src.charAt(4)=="ン")
+                        return unhenkan1(src);
+                    else if (src.charAt(2)=="ボ")
+                        return unhenkan2(src);
+                    else
+                        return unhenkan3(src);
+                }
+
+                function unhenkanlast2_check(src1, src2) {
+                    return src1 && src1.charAt(2) == "ボ" && src2 && src2.charAt(2) == "ボ";
+                }
+                
+                function unhenkan1(src) {
+                    return src.replace(/(.)..../g, "$1");
+                }
+
+                function unhenkan2(src) {
+                    return src.replace(/(.)...(.)/g, "$1$2");
+                }
+
+                function unhenkan3(src) {
+                    return src.replace(/(.).(.).(.)/g, "$1$2$3");
+                }
+
+                function run(name) {
+                    return henkan(name);
+                }
+
+                return function () {
+                    var element = document.getElementById("byofield");
+                    element.value = run(element.value);
+                }
+            })();
         </script>
     </head>
     <body>
-        <input id="byofield" type="text"><input id="byobutton" type="button" value="変換" onClick="byohenkan()">
+        <input id="byofield" type="text"><input type="button" value="変換" onClick="byohenkan()"><input type="button" value="逆変換" onClick="byounhenkan()">
     </body>
 </html>
